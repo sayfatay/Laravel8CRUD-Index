@@ -30,19 +30,19 @@
         <div class="col-md-12">
             <div class="form-group">
                 <strong>รหัสนักศึกษา</strong>
-                <input type="text" name="main_id" value="{{ $post->main_id }}" class="form-control" placeholder="Enter Title" >
+                <input type="text" name="main_id" value="{{ $post->main_id }}" class="form-control" placeholder="Enter Title" readonly>
             </div>
         </div>
         <div class="col-md-12">
             <div class="form-group">
                 <strong>ชื่อ</strong>
-                <input type="text" name="fname" value="{{ $post->fname }}" class="form-control" placeholder="Enter Title" >
+                <input type="text" name="fname" value="{{ $post->fname }}" class="form-control" placeholder="Enter Title" readonly>
             </div>
         </div>
         <div class="col-md-12">
             <div class="form-group">
                 <strong>นามสกุล</strong>
-                <input type="text" name="lname" value="{{ $post->lname }}" class="form-control" placeholder="Enter Title" >
+                <input type="text" name="lname" value="{{ $post->lname }}" class="form-control" placeholder="Enter Title" readonly >
             </div>
         </div>
 
@@ -64,25 +64,30 @@
                 <label for="email">คะเเนน:: </label>
                 <input type="text" class="form-control" placeholder="Enter ข้อมูล" name='score' id='score' value="{{ $post->score }}" >
                 <label for="pwd">เกรด:: </label>
-                <input type="text" class="form-control" placeholder="Enter ข้อมูล" name='grade' id='grade' value="{{ $post->grade }}">
+                <input type="text" class="form-control" placeholder="Enter ข้อมูล" name='grade' id='grade' value="{{ $post->grade }}" readonly>
                 <div class="form-check">
                 </div>
                 <button  onclick="myFunction()" type="button"  class="btn btn-primary">คำนาณ</button>
             </div>
 
         <div class="col-md-12">
-            <button type="submit" class="btn btn-success my-3">Update</button>
+            <button type="submit" class="btn btn-success my-3" id='dtn_submit' >Update</button>
         </div>
     </div>
 </form>
 
 <script>
+document.getElementById("dtn_submit").disabled = true;
+//เอา id dtn_submit เเล้วปิดปุ่ม
+
 function myFunction() {
 
   var namber = document.getElementById("score").value;
 
 if(namber==''){
    alert('กรุณากรอกข้มูลคะเเนน');
+   document.getElementById("dtn_submit").disabled = true;
+   //เอา id dtn_submit เเล้วปิดปุ่ม
 }else{
     if(namber>=80){
         greeting = "A";
@@ -102,6 +107,9 @@ if(namber==''){
         greeting = "ไม่ผ่าน";
     }
     document.getElementById("grade").value = greeting
+
+    document.getElementById("dtn_submit").disabled = false;
+    //เอา id dtn_submit เเล้วเปิด
 }
 
 
